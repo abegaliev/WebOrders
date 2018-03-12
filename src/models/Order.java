@@ -7,7 +7,6 @@ public class Order {
 
 	private String product;
 	private String quantity;
-	private String pricePerUnit;
 	private String discount;
 	private String total;
 	private String name;
@@ -20,9 +19,24 @@ public class Order {
 	private String expDate;
 	private String date;
 	
-	public Order() {
+	
+	public Order(String product, String quantity, String name, String street, String city, String state, String zip,
+			String cardType, String cardNumber, String expDate) {
+	
+		super();
 		this.date = getDate();
+		this.product = product;
+		this.quantity = quantity;
+		this.name = name;
+		this.street = street;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.cardType = cardType;
+		this.cardNumber = cardNumber;
+		this.expDate = expDate;
 	}
+
 	
 	private String getDate() {
 		LocalDate localDate = LocalDate.now();//For reference
@@ -48,13 +62,6 @@ public class Order {
 		this.quantity = quantity;
 	}
 
-	public String getPricePerUnit() {
-		return pricePerUnit;
-	}
-
-	public void setPricePerUnit(String pricePerUnit) {
-		this.pricePerUnit = pricePerUnit;
-	}
 
 	public String getDiscount() {
 		return discount;
@@ -142,7 +149,7 @@ public class Order {
 	
 	@Override
 	public String toString() {
-		return name+" "+" "+product+" "+quantity+" "+pricePerUnit+" "+street+" "+city;
+		return name+" "+" "+product+" "+quantity+" "+street+" "+city;
 	}
 	
 	

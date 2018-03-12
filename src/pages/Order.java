@@ -1,7 +1,6 @@
 package pages;
 
-import java.util.List;
-
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -37,14 +36,11 @@ public class Order {
 	@FindBy(id="ctl00_MainContent_fmwOrder_TextBox5")
 	public WebElement zipCodeField;
 	
-	@FindBy(id="ctl00_MainContent_fmwOrder_TextBox6")
+	@FindBy(xpath = "//input[@id='ctl00_MainContent_fmwOrder_TextBox6']")
 	public WebElement cardNumber;
 	
-	@FindBy(id="ctl00_MainContent_fmwOrder_TextBox1a")
+	@FindBy(id="ctl00_MainContent_fmwOrder_TextBox1")
 	public WebElement expDate;
-	
-	@FindBy(id="//table[@id='ctl00_MainContent_fmwOrder_cardList']//input")
-	public List<WebElement> cardTypes;
 	
 	@FindBy(id="ctl00_MainContent_fmwOrder_ddlProduct")
 	public WebElement productDropDown;
@@ -56,8 +52,18 @@ public class Order {
 	public WebElement resetBtn;
 	
 	public void placeOrder(models.Order order) {
+		selectProduct(order.getProduct());
 		
-		
+		quantityField.sendKeys(order.getQuantity());
+		customerName.sendKeys(order.getName());
+		streetField.sendKeys(order.getStreet());
+		cityField.sendKeys(order.getCity());
+		stateField.sendKeys(order.getState());
+		zipCodeField.sendKeys(order.getZip());
+		cardNumber.sendKeys(order.getCardNumber());
+		expDate.sendKeys(order.getExpDate());
+		driver.findElement(By.xpath("//table[@id='ctl00_MainContent_fmwOrder_cardList']//input[@value='" + order.getCardType() + "']")).click();
+		processBtn.click();
 		
 	}
 	
@@ -66,9 +72,8 @@ public class Order {
 		select.selectByVisibleText(targetProd);
 	}
 	
-//	public void chooseCardType(String tardet) {
-//		for(WebElement elem : )
-//	}
+	
+	
 	
 	
 	

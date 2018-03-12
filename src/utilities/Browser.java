@@ -22,7 +22,7 @@ public class Browser {
 		
 		String browser = Config.getProperty("browser");
 
-		switch(browser) {
+		switch(browser.toLowerCase()) {
 		case "chrome":
 			String chromePath = Config.getProperty("chromePath");
 			System.setProperty("webdriver.chrome.driver", chromePath);
